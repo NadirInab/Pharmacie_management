@@ -33,6 +33,8 @@ void sortByPrice() ;
 
 void stockAvailibility() ;
 
+void purchaseProduct() ;
+
 
 // =================================================
 
@@ -52,7 +54,8 @@ do
     printf("\t\t[1]-Add new Product \n") ;
     printf("\t\t[2]-Add multiple Products :\n ") ;
     printf("\t\t[3]-Display all the product :\n ") ;
-    printf("\t\t[4]-Stock availibility :\n ") ;
+    printf("\t\t[4]-Purchase a product :\n ") ;
+    printf("\t\t[5]-Stock availibility :\n ") ;
     printf("\t\tchoose : ") ;
     scanf("%d",&userChoice);
 
@@ -74,6 +77,9 @@ do
         displaying();
         break;
     case 4:
+        purchaseProduct();
+        break;
+    case 5:
         stockAvailibility();
         break;
     default : 
@@ -397,4 +403,39 @@ void  stockAvailibility(){
     
   }
   return_or_exit();
+}
+
+
+
+void purchaseProduct(){
+char productId[10];
+int wantedQuantity;
+     system("cls");
+     printf("\n\n");
+
+     printf("Enter the product Code : ");
+     scanf("%s", productId);
+
+     printf("\n");
+     printf("enter the wanted quantity : ");
+     scanf("%d", &wantedQuantity);
+     
+     system("cls");
+     printf("\n\n");
+     printf("==> The product code     : %s\n", productId);
+     printf("==> The wanted quantity  : %d \n\n", wantedQuantity);
+
+     for (int i = 0; i < products; i++)
+     {
+         if (strcmp(Info[i].id, productId) == 0)
+         {
+
+          printf("The Former quantity  : %d \n", Info[i].quantity);
+          Info[i].quantity = Info[i].quantity - wantedQuantity;
+          printf("The actual quantity : %d\n", Info[i].quantity);
+          } 
+      }
+      printf("\n\n");
+
+      return_or_exit();
 }
