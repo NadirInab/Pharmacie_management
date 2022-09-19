@@ -23,16 +23,16 @@ void theMain(){
     here:
 do
 {
-    // system("cls") ;
+    system("cls") ;
     printf("\t\t===============================================\n ") ;
-    // printf("\t\t==========||Welcome to our Medicines Management|| ======== \n") ;
+    printf("\t\t==========||Welcome to our Medicines Management|| ======== \n") ;
     printf("\t\t=============================================== \n") ;
     printf("\t\t[1]-Add new Product \n") ;
     printf("\t\t[2]-Add multiple Products :\n ") ;
     printf("\t\t[3]-Display all the product :\n ") ;
     printf("\t\t[4]-Purchase a product :\n ") ;
-    // printf("\t\t[5]-Stock availibility :\n ") ;
-    // printf("\t\t[6]- getttetetFeed stock :\n ") ;
+    printf("\t\t[5]-Stock availibility :\n ") ;
+    printf("\t\t[6]- getttetetFeed stock :\n ") ;
     printf("\t\tchoose : ") ;
 
     scanf("%d",&userChoice);
@@ -390,22 +390,20 @@ int wantedQuantity;
       return_or_exit();
 }
 
-// void feedStock(){
-//   char productId[2] ;
-//   int feedQuantity ;
-//   // system("cls") ;
-//   printf("enter the wanted id :") ;
-//   scanf("%s",&productId) ;
-//   printf("Quantity to be added") ;
-//   scanf("%d",&feedQuantity) ;
-//   for(int i = 0 ; i < products ;i++){
-//     if (strncmp(Info[i].id, productId,2)==0){
-
-//       Info[i].quantity += feedQuantity ;
-//       printf("%s",Info[i].name) ;
-//       printf("%s",Info[i].id) ;
-//     }else{
-//       printf("the product id doesn't exist") ;
-//     }
-//   } 
-// }
+void feedStock(){
+  char productId[2] ;
+  int feedQuantity ;
+  printf("enter the wanted id : \n\n") ;
+  scanf("%s",&productId) ;
+  printf("Quantity to be added \n\n") ;
+  scanf("%d",&feedQuantity) ;
+  for(int i = 0 ; i < products ;i++){
+    if (strcmp(Info[i].id, productId)==0){
+      Info[i].quantity += feedQuantity ;
+      printf("%s",Info[i].name) ;
+      printf("%s",Info[i].quantity) ;
+    }else{
+      printf("the product id doesn't exist") ;
+    }
+  } 
+}
