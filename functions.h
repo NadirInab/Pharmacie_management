@@ -1,10 +1,12 @@
-#include <stdio.h>
-#include <conio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include "structure.h" 
+#include <stdio.h> // input output  .
+#include <conio.h> // getch() .
+#include <stdlib.h> // IO header information . memory allocation . 
+#include <string.h> // string header contains string built in functions . 
+#include <time.h> // time header file . 
+#include <ctype.h>
+#include "structure.h" //
 
+// _____Functions Prototype : 
 void theMain() ;
 void addProduct() ;
 void addMultiProduct() ;
@@ -21,6 +23,7 @@ void feedStock() ;
 void deleteProduct() ;
 void saleData() ;
 
+// The functions definition .
 void theMain(){
     int userChoice  ;
     here:
@@ -68,6 +71,7 @@ do
 }while (userChoice < 1 || userChoice > 1);
 }
 
+// Adding a single Product :
 void addProduct(){
         printf("\t\t\n\n=====|| Add Product Info ||===== \n\n") ;
         printf("\t\t======================================\n") ;
@@ -98,12 +102,13 @@ void addProduct(){
         // products++ ;
          return_or_exit() ;
 }
-//===================================================================================================
+
+// Adding Multiple Products :
 void addMultiProduct(){
     int numberOfProduct ;
     printf("Enter the number of products to add : ") ;
     scanf("%d",&numberOfProduct) ;
-    //===============|| Adding the products ||=============// 
+     // Adding the products .
     for (int i = 0; i < numberOfProduct; i++)
     {
         printf("\t\t\n\n =====Add Product Info :===== \n\n") ;
@@ -125,7 +130,7 @@ void addMultiProduct(){
     printf("\t\t======||               ||========\n") ;
     printf("\t\t======||_______________||========\n") ;
 
-     // =========|| displaying the products ||=======
+     //  displaying the products 
     for (int i = 0; i < products; i++)
     {
         printf("\n\t\tthe product Id       : %s  ",Info[i].id) ;
@@ -136,7 +141,8 @@ void addMultiProduct(){
 
     return_or_exit() ;
 }
-//=======================================================================================================
+
+// Retunr or exit functionality :
 void return_or_exit(){
   int choice;
 do {
@@ -158,7 +164,7 @@ do {
     }
     } while (choice < 1 || choice > 2 );
 }
-//==============================================================================================
+// displaying functionality :
 void displaying(){
   int userChoice;
   system("cls");
@@ -197,7 +203,7 @@ void displaying(){
     displaying();
   }
 }
-//==============================================================================================
+// Searching for a product by code :
 void searchByCode(){
       // system("cls");
      char productId[2] ;
@@ -221,7 +227,7 @@ void searchByCode(){
       printf("\n\n");
       return_or_exit();
 }
-//==============================================================================================
+// Searching for a product by quantity :
 void searchByQuantity(){
      //  system("cls");
      int productQuantity;
@@ -246,7 +252,7 @@ void searchByQuantity(){
 
       return_or_exit();
 }
-//==============================================================================================
+// Sorting the products By : name / price .
 void sortAllProducts(){
   int userChoice;
   system("cls");
@@ -272,8 +278,8 @@ void sortAllProducts(){
   }
     return_or_exit();
 }
-//==============================================================================================
 
+// Sorting by name :
 void sortByName(){
 
  Product extrenal ;
@@ -300,7 +306,8 @@ void sortByName(){
   return_or_exit();
 
 }
-//==============================================================================================
+
+//Sorting By Price :
 
 void sortByPrice(){
   Product external;
@@ -327,7 +334,7 @@ void sortByPrice(){
      }
   return_or_exit();
 }
-//==============================================================================================
+// displaying the product less than three :
 void  stockAvailibility(){
   for(int i = 0; i < products; i++)
   {
@@ -343,8 +350,8 @@ void  stockAvailibility(){
   }
   return_or_exit();
 }
-//==============================================================================================
-/// here we buy a product .
+
+/// Buying a product .
 void purchaseProduct(){
 char productId[10];
 int wantedQuantity;
@@ -358,7 +365,6 @@ char productBuyTime[50] ;
     buyTime= localtime(&purchaseTime) ;
     strftime(productBuyTime,50,"%x", buyTime);
 
-    // end of saving purchasing data . 
     printf("Enter the product Id : ");
     scanf("%s", productId);
     printf("\n");
@@ -401,7 +407,7 @@ char productBuyTime[50] ;
       printf("\n\n");
       return_or_exit();
 }
-//==============================================================================================
+// Adding quantity to a specifique products :
 void feedStock(){
   char productId[2] ;
   int feedQuantity ;
@@ -421,7 +427,7 @@ void feedStock(){
   } 
 }
 
-//==============================================================================================
+// Deleting a product by it's own Id .
 void deleteProduct(){
   char idToDelete[2] ;
   printf("Enter product's Id : ") ;
@@ -435,7 +441,8 @@ void deleteProduct(){
     }
   }
 }
-//==============================================================================================
+
+// Data about the sale process : time and price and quantity .
 void saleData(){
   printf("===here we are== \n") ;
   printf("Enter day :") ;
@@ -444,5 +451,4 @@ void saleData(){
       int totalPrice = Info[j].price*thePurchaseData[j].quantity ;
       printf("we sold today %s %d of %s",thePurchaseData[j].productBuyTime,totalPrice,Info[j].name) ;
     }
-
 } 

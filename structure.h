@@ -1,6 +1,5 @@
 #define length 20 
 
-
 // product model . 
 typedef struct {
     char id[10] ;
@@ -9,6 +8,7 @@ typedef struct {
     float price ;
 } Product ;
 
+// struct to save the purchase data .
 typedef struct 
 {
     char id[10] ;
@@ -17,7 +17,6 @@ typedef struct
     float price ;
     char productBuyTime[50] ;
 } PurchaseData; 
-
 
 // product data :
 
