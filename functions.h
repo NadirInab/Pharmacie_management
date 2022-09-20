@@ -34,14 +34,10 @@ do
     printf("\t\t==|[2]-Add multiple Products :\n ") ;
     printf("\t\t==|[3]-Display all the product :\n ") ;
     printf("\t\t==|[4]-Purchase a product :\n ") ;
-    printf("\t\t==|[5]-Stock availibility :\n ") ;
-    printf("\t\t==|[6]-Feed stock :\n ") ;
-    printf("\t\t==|[7]-Delete products :\n") ;
-    printf("\t\t==|[8]-sale Data :\n\n ") ;
+    printf("\t\t==|[5]-Delete a product :\n ") ;
+    printf("\t\t==|[6]-Sale's Data :\n ") ;
     printf("\t\t==|user choice : ") ;
-
     scanf("%d",&userChoice);
-
     switch (userChoice)
     {
     case 1:
@@ -57,18 +53,12 @@ do
         purchaseProduct();
         break;
     case 5:
-        stockAvailibility();
-        break;
-    case 6:
-        feedStock();
-        break;
-    case 7:
         deleteProduct();
         break;
-    case 8:
+    case 6:
         saleData();
         break;
-    default : 
+    case 7 : 
         theMain() ;
         break;
 }
@@ -96,17 +86,10 @@ void addProduct(){
         printf("the product quantity :%d \n",Info[i].quantity) ;
         printf("the product price :%.2f \n",Info[i].price) ;
        }
-       
-        // printf("\t\t===Your product :===== \n") ;
-        // printf("the product Id :%s \n ",Info[products].id) ;
-        // printf("the product name :%s \n",Info[products].name) ;
-        // printf("the product quantity :%d \n",Info[products].quantity) ;
-        // printf("the product price :%.2f \n",Info[products].price) ;
         products++ ;
          return_or_exit() ;
 }
-
-
+//===================================================================================================
 void addMultiProduct(){
     int numberOfProduct ;
     printf("Enter the number of products to add : ") ;
@@ -140,7 +123,7 @@ void addMultiProduct(){
 
     return_or_exit() ;
 }
-
+//=======================================================================================================
 void return_or_exit(){
   int choice;
 do {
@@ -162,21 +145,19 @@ do {
     }
     } while (choice < 1 || choice > 2 );
 }
-
-
+//==============================================================================================
 void displaying(){
   int userChoice;
   system("cls");
   printf("\n");
   printf("List des produits par ordre :\n");
   printf("\n\n");
-  printf("[1]- search by Code.\n");
-  printf("[2] - search by Quantity.\n");
-  printf("[3] - Sort the products.\n");
-  printf("[4] - situation of the stock.\n");
-  // printf("[5] - Feed the stock.\n");
-  // printf("[6] - delete by code.\n\n");
-  // printf("[7] - purchase data.\n\n");
+  printf("[1]-Search by Code.\n");
+  printf("[2]-Search by Quantity.\n");
+  printf("[3]-Sort the products.\n");
+  printf("[4]-Stock availibility :\n ") ;
+  printf("[5]-Feed stock :\n ") ;
+  printf("[6]-Return to the main :\n ") ;
   printf("Votre choix : ");
   scanf("%d", &userChoice);
   switch (userChoice)
@@ -191,25 +172,21 @@ void displaying(){
     sortAllProducts();
     break;
   case 4:  
-    // Etat_du_stock();
+   stockAvailibility();
     break;
-  // case 5:
-  //   Feed_stock();
-  //   break;
-  // case 6:
-  //   deleteProductByCode();
-  //   break;
-  // case 7:
-  //   dataOfSell();
-  //   break;
+  case 5:
+       feedStock();
+    break;
+  case 6:
+       theMain();
+    break;
   default:
     displaying();
   }
 }
-
-
+//==============================================================================================
 void searchByCode(){
-     //  system("cls");
+      // system("cls");
      char productId[2] ;
      printf("\n\n");
      printf("Veuilez saisir le Code du produit : ");
@@ -231,8 +208,7 @@ void searchByCode(){
       printf("\n\n");
       return_or_exit();
 }
-
-
+//==============================================================================================
 void searchByQuantity(){
      //  system("cls");
      int productQuantity;
@@ -257,7 +233,7 @@ void searchByQuantity(){
 
       return_or_exit();
 }
-
+//==============================================================================================
 void sortAllProducts(){
   int userChoice;
   system("cls");
@@ -281,14 +257,9 @@ void sortAllProducts(){
     displaying() ;
         break ;
   }
-  // for (int i = 0; i < nbProduit; i++)
-  // {
-  //    float prix_TTC = (produit[i].Prix*0.15)+produit[i].Prix;
-
-  //    printf("\n--> Nom de Produit : %s.\n  - Prix      :  %.2f MAD.\n  - Prix TTC : %.2f MAD.\n\n",produit[i].Nom, produit[i].Prix, prix_TTC);
-  //    }
     return_or_exit();
 }
+//==============================================================================================
 
 void sortByName(){
 
@@ -307,19 +278,16 @@ void sortByName(){
   }
  }
      float ttcPrice = (Info[i].price*0.15)+Info[i].price;
-    //  printf(" Info N*%d \n", i + 1);
       printf("\n");
       printf("==> product's name  : %s\n", Info[i].name);
       printf("==> Product's price : %.2f MAD\n", Info[i].price);
       printf("==> ttc price       : %.2f MAD\n", ttcPrice);
       printf("\n");
-
-    //  printf("\n--> Nom de Produit : %s.\n  - Prix      :  %.2f MAD.\n  - Prix TTC : %.2f MAD.\n\n",produit[i].Nom, produit[i].Prix, prix_TTC);
      }
   return_or_exit();
 
 }
-
+//==============================================================================================
 
 void sortByPrice(){
   Product external;
@@ -338,19 +306,15 @@ void sortByPrice(){
   }
  }
      float prix_TTC = (Info[i].price*0.15)+Info[i].price;
-    //  printf(" produit N*%d \n", i + 1);
       printf("\n");
       printf("==> Product's name :  %s\n", Info[i].name);
       printf("==> Product's price:  %.2f MAD\n", Info[i].price);
       printf("==> ttc price      : %.2f MAD\n", prix_TTC);
       printf("\n");
-
-    //  printf("\n--> Nom de Produit : %s.\n  - Prix      :  %.2f MAD.\n  - Prix TTC : %.2f MAD.\n\n",produit[i].Nom, produit[i].Prix, prix_TTC);
      }
   return_or_exit();
 }
-
-
+//==============================================================================================
 void  stockAvailibility(){
   for(int i = 0; i < products; i++)
   {
@@ -361,34 +325,33 @@ void  stockAvailibility(){
             printf("Product Name      : %s\n", Info[i].name);
             printf("Product quantity : %d\n", Info[i].quantity);
             printf("Product price     : %.2f Dhs\n", Info[i].price);
-            printf("\n");
-    }
-    
+      printf("\n");
+    } 
   }
   return_or_exit();
 }
-
+//==============================================================================================
 /// here we buy a product .
 void purchaseProduct(){
 char productId[10];
 int wantedQuantity;
 struct tm *buyTime;
 char productBuyTime[50] ;
-     system("cls");
+    //  system("cls");
     printf("\n\n");
     // saving purchasing data .
     time_t purchaseTime ;
     time(&purchaseTime);
     buyTime= localtime(&purchaseTime) ;
     strftime(productBuyTime,50,"%x", buyTime);
+
     // end of saving purchasing data . 
     printf("Enter the product Code : ");
     scanf("%s", productId);
     printf("\n");
     printf("enter the wanted quantity : ");
     scanf("%d", &wantedQuantity);
-    // productBuyTime ;
-
+    // pickingUp ++ ;
      system("cls");
      printf("\n\n ======================================= \n"); 
      printf("=====||Purchase Products ||======") ;
@@ -402,25 +365,27 @@ char productBuyTime[50] ;
           printf("==>The Former quantity  : %d \n", Info[i].quantity);
           Info[i].quantity = Info[i].quantity - wantedQuantity;
             printf("==>The actual quantity  : %d\n", Info[i].quantity);
-
             strcpy(thePurchaseData[i].id,Info[i].id) ;
             strcpy(thePurchaseData[i].name,Info[i].name) ;
             thePurchaseData[i].quantity = wantedQuantity ;
             strcpy(thePurchaseData[i].productBuyTime, productBuyTime) ;
             thePurchaseData[i].price = Info[i].price ;
           } 
-          printf("==== here we buy and save time \n") ;
-          printf("%s \n",thePurchaseData[i].id ) ;
-          printf("%s \n",thePurchaseData[i].name ) ;
-          printf("%s\n",thePurchaseData[i].productBuyTime ) ;
-          printf("%d \n",thePurchaseData[i].quantity ) ;
-          printf("%f \n",thePurchaseData[i].price) ;
+            printf("\t======|* * * * * *|======= \n") ;
+          printf("\t======| Your Bill |=======\n") ;
+          printf("\t======|* * * * * *|=======") ;
+          printf("\n\t Product Id    :%s ",thePurchaseData[i].id ) ;
+          printf("\n\t Product name  :%s ",thePurchaseData[i].name ) ;
+          printf("\n\t ==>Date       : %s",thePurchaseData[i].productBuyTime ) ;
+          printf("\n\t ==>Quantity   : %d ",thePurchaseData[i].quantity ) ;
+          printf("\n\t ==>Total price: %.2f Dh",(thePurchaseData[i].price*wantedQuantity)) ;
       }
+       
       pickingUp ++ ;
       printf("\n\n");
       return_or_exit();
 }
-
+//==============================================================================================
 void feedStock(){
   char productId[2] ;
   int feedQuantity ;
@@ -428,7 +393,6 @@ void feedStock(){
   scanf("%s",&productId) ;
   printf("Quantity to be added \n\n") ;
   scanf("%d",&feedQuantity) ;
-
   for(int i = 0 ; i < products ;i++){
     if (strcmp(Info[i].id, productId)==0){
       printf("%d",Info[i].quantity) ;
@@ -441,6 +405,7 @@ void feedStock(){
   } 
 }
 
+//==============================================================================================
 void deleteProduct(){
   char idToDelete[2] ;
   printf("Enter product's Id : ") ;
@@ -454,7 +419,7 @@ void deleteProduct(){
     }
   }
 }
-
+//==============================================================================================
 void saleData(){
   // char daytoknow[50] ;
   printf("===here we are== \n") ;
@@ -467,6 +432,5 @@ void saleData(){
     //   int totalPrice = Info[j].price*thePurchaseData[j].quantity ;
     //   printf("we sold today %s %d of %s",thePurchaseData[j].productBuyTime,totalPrice,Info[j].name) ;
     // }
-    
-  
-}
+
+} 
