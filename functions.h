@@ -27,17 +27,20 @@ void theMain(){
 do
 {
     system("cls") ;
-    printf("\t\t===============================================\n ") ;
-    printf("\t\t==========||Welcome to our Medicines Management|| ======== \n") ;
-    printf("\t\t=============================================== \n") ;
-    printf("\t\t==|[1]-Add new Product \n") ;
+    printf("\t\t||==========||====================||=========||\n ") ;
+    printf("\t\t||==========||____________________||=========||\n ") ;
+    printf("\t\t||==========||                    ||=========||\n ") ;
+    printf("\t\t||==========||Pharmacy Management ||=========||\n") ;
+    printf("\t\t||==========||____________________||=========||\n ") ;
+    printf("\t\t||==========||====================||=========||\n\n") ;
+    printf("\t\t==|[1]-Add new Product  \n") ;
     printf("\t\t==|[2]-Add multiple Products :\n ") ;
     printf("\t\t==|[3]-Display all the product :\n ") ;
-    printf("\t\t==|[4]-Purchase a product :\n ") ;
+    printf("\t\t==|[4]-Purchase a product $$$ :\n ") ;
     printf("\t\t==|[5]-Delete a product :\n ") ;
-    printf("\t\t==|[6]-Sale's Data :\n ") ;
-    printf("\t\t==|user choice : ") ;
-    scanf("%d",&userChoice);
+    printf("\t\t==|[6]-Sale's Data  :\n\n ") ;
+    printf("\t\t==|user choice :  ") ;
+    scanf(" %d",&userChoice);
     switch (userChoice)
     {
     case 1:
@@ -66,27 +69,33 @@ do
 }
 
 void addProduct(){
-        printf("\n\n=====|| Add Product Info ||===== \n\n") ;
-        printf("======================================\n") ;
+        printf("\t\t\n\n=====|| Add Product Info ||===== \n\n") ;
+        printf("\t\t======================================\n") ;
 
         printf("add Product Id : ") ;
         scanf("%s",&Info[products].id) ;
         printf("add Product Name : ") ;
-        scanf("%s",&Info[products].name) ;
+        scanf(" %s",&Info[products].name) ;
         printf("add the Quantity : ") ;
-        scanf("%d",&Info[products].quantity) ;
+        scanf(" %d",&Info[products].quantity) ;
         printf("add the price : ") ;
-        scanf("%f",&Info[products].price) ;
-       
+        scanf(" %f",&Info[products].price) ;
+       products++ ;
        for (int i = 0; i < products; i++)
        {
-        printf("\t\t===Your product :===== \n") ;
-        printf("the product Id :%s \n ",Info[i].id) ;
-        printf("the product name :%s \n",Info[i].name) ;
-        printf("the product quantity :%d \n",Info[i].quantity) ;
-        printf("the product price :%.2f \n",Info[i].price) ;
+        
+        printf("\n\t\t ====| Products data has been added successfully :\n\n") ;
+        printf("\t\t======||_______________||========\n") ;
+        printf("\t\t======||               ||========\n") ;
+        printf("\t\t======|| Your product ||======= \n") ;
+        printf("\t\t======||               ||========\n") ;
+        printf("\t\t======||_______________||========\n") ;
+        printf("\t\tThe product Id       : %s \n ",Info[i].id) ;
+        printf("\t\tThe product name     : %s \n",Info[i].name) ;
+        printf("\t\tThe product quantity : %d \n",Info[i].quantity) ;
+        printf("\t\tThe product price    : %.2f Dh \n",Info[i].price) ;
        }
-        products++ ;
+        // products++ ;
          return_or_exit() ;
 }
 //===================================================================================================
@@ -97,7 +106,7 @@ void addMultiProduct(){
     //===============|| Adding the products ||=============// 
     for (int i = 0; i < numberOfProduct; i++)
     {
-        printf("\n\n =====Add Product Info :===== \n\n") ;
+        printf("\t\t\n\n =====Add Product Info :===== \n\n") ;
         printf("add Product Id : ") ;
         scanf("%s",&Info[products].id) ;
         printf("add Product Name : ") ;
@@ -110,15 +119,19 @@ void addMultiProduct(){
     }
     system("cls");
     printf("\n\n ====| Products data has been added successfully :\n\n") ;
-    printf("\t\t======Your product       :======= \n") ;
+    printf("\t\t======||_______________||========\n") ;
+    printf("\t\t======||               ||========\n") ;
+    printf("\t\t======|| Your products ||======= \n") ;
+    printf("\t\t======||               ||========\n") ;
+    printf("\t\t======||_______________||========\n") ;
 
      // =========|| displaying the products ||=======
     for (int i = 0; i < products; i++)
     {
-        printf("\nthe product Id       :%s  ",Info[i].id) ;
-        printf("\nthe product name     :%s ",Info[i].name) ;
-        printf("\nthe product quantity :%d ",Info[i].quantity) ;
-        printf("\nthe product price    :%.2f Dhs \n\n",Info[i].price) ;
+        printf("\n\t\tthe product Id       : %s  ",Info[i].id) ;
+        printf("\n\t\tthe product name     : %s ",Info[i].name) ;
+        printf("\n\t\tthe product quantity : %d ",Info[i].quantity) ;
+        printf("\n\t\tthe product price    : %.2f Dhs \n\n",Info[i].price) ;
     }
 
     return_or_exit() ;
@@ -128,9 +141,9 @@ void return_or_exit(){
   int choice;
 do {
     ther :
-    printf("\n\n==> [1]- Return to the menu .");
-    printf("\n\n==> [2]- Exit .\n");
-    printf("\n\n=====>Your choice : ");
+    printf("\n\n\t\t==> [1]-Return to the menu .");
+    printf("\n\n\t\t==> [2]-Exit .\n");
+    printf("\n\n\t\t=====>Your choice : ");
     scanf("%d",&choice);
     switch(choice)
     {
@@ -337,7 +350,7 @@ char productId[10];
 int wantedQuantity;
 struct tm *buyTime;
 char productBuyTime[50] ;
-    //  system("cls");
+    system("cls");
     printf("\n\n");
     // saving purchasing data .
     time_t purchaseTime ;
@@ -346,23 +359,23 @@ char productBuyTime[50] ;
     strftime(productBuyTime,50,"%x", buyTime);
 
     // end of saving purchasing data . 
-    printf("Enter the product Code : ");
+    printf("Enter the product Id : ");
     scanf("%s", productId);
     printf("\n");
     printf("enter the wanted quantity : ");
     scanf("%d", &wantedQuantity);
-    // pickingUp ++ ;
+     numberOfsales ++ ;
      system("cls");
-     printf("\n\n ======================================= \n"); 
-     printf("=====||Purchase Products ||======") ;
-     printf("\n\n ======================================= \n"); 
+     printf("\n   ||==================||====== \n"); 
+     printf("=====||Purchase Products ||======\n") ;
+     printf("=====||==================||====== \n"); 
      printf("==> The product code     : %s\n", productId);
      printf("==> The wanted quantity  : %d \n\n", wantedQuantity);
      for (int i = 0; i < products; i++)
      {
          if (strcmp(Info[i].id, productId) == 0)
          {
-          printf("==>The Former quantity  : %d \n", Info[i].quantity);
+          printf(" \n==>The Former quantity  : %d \n", Info[i].quantity);
           Info[i].quantity = Info[i].quantity - wantedQuantity;
             printf("==>The actual quantity  : %d\n", Info[i].quantity);
             strcpy(thePurchaseData[i].id,Info[i].id) ;
@@ -371,17 +384,20 @@ char productBuyTime[50] ;
             strcpy(thePurchaseData[i].productBuyTime, productBuyTime) ;
             thePurchaseData[i].price = Info[i].price ;
           } 
-            printf("\t======|* * * * * *|======= \n") ;
-          printf("\t======| Your Bill |=======\n") ;
-          printf("\t======|* * * * * *|=======") ;
-          printf("\n\t Product Id    :%s ",thePurchaseData[i].id ) ;
-          printf("\n\t Product name  :%s ",thePurchaseData[i].name ) ;
-          printf("\n\t ==>Date       : %s",thePurchaseData[i].productBuyTime ) ;
-          printf("\n\t ==>Quantity   : %d ",thePurchaseData[i].quantity ) ;
-          printf("\n\t ==>Total price: %.2f Dh",(thePurchaseData[i].price*wantedQuantity)) ;
+          for (int j = 0; j < numberOfsales; j++)
+          {
+            printf(" the number of purchaqse is here %d \n",numberOfsales) ;
+          printf("\t\t======|___________|======= \n") ;
+          printf("\t\t======| Your Bill |=======\n") ;
+          printf("\t\t======|___________|======= \n") ;
+          printf("\t\t========|* * * * * *|=======") ;
+          printf("\n\t Product Id    : %s ",thePurchaseData[j].id ) ;
+          printf("\n\t Product name  : %s ",thePurchaseData[j].name ) ;
+          printf("\n\t ==>Date       : %s",thePurchaseData[j].productBuyTime ) ;
+          printf("\n\t ==>Quantity   : %d ",thePurchaseData[j].quantity ) ;
+          printf("\n\t ==>Total price: %.2f Dh",(thePurchaseData[j].price*wantedQuantity)) ;
+          }
       }
-       
-      pickingUp ++ ;
       printf("\n\n");
       return_or_exit();
 }
@@ -421,16 +437,12 @@ void deleteProduct(){
 }
 //==============================================================================================
 void saleData(){
-  // char daytoknow[50] ;
   printf("===here we are== \n") ;
   printf("Enter day :") ;
-  // scanf("%s ",&daytoknow) ;
-  // printf("\n %s \n",daytoknow) ;
-
-    // for (int j = 0; j < products; j++)
-    // {
-    //   int totalPrice = Info[j].price*thePurchaseData[j].quantity ;
-    //   printf("we sold today %s %d of %s",thePurchaseData[j].productBuyTime,totalPrice,Info[j].name) ;
-    // }
+    for (int j = 0; j < numberOfsales; j++)
+    {
+      int totalPrice = Info[j].price*thePurchaseData[j].quantity ;
+      printf("we sold today %s %d of %s",thePurchaseData[j].productBuyTime,totalPrice,Info[j].name) ;
+    }
 
 } 

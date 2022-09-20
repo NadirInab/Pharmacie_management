@@ -24,7 +24,7 @@ typedef struct
 Product Info[length] ;
 int numberOfProduct ;
 int products = 0 ;
-int pickingUp = 0 ;
+int numberOfsales = 0 ;
 char productBuyTime[50] ;
 
 PurchaseData thePurchaseData[length] ;
