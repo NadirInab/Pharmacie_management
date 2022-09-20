@@ -9,8 +9,22 @@ typedef struct {
     float price ;
 } Product ;
 
+typedef struct 
+{
+    char id[10] ;
+    char name[10];
+    int quantity;
+    float price ;
+    char productBuyTime[50] ;
+} PurchaseData; 
+
+
 // product data :
 
 Product Info[length] ;
 int numberOfProduct ;
 int products = 0 ;
+int pickingUp = 0 ;
+char productBuyTime[50] ;
+
+PurchaseData thePurchaseData[length] ;
