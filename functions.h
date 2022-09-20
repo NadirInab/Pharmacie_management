@@ -288,7 +288,7 @@ void sortByName(){
  {
   for (int j = k + 1; j < products; j++)
   {
-    if (strcmp(Info[k].name,  Info[j].name) > 0)
+    if (strcmp(Info[k].name , Info[j].name) > 0)
     {
       extrenal = Info[k];
       Info[k] = Info[j];
