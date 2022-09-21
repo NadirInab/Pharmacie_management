@@ -19,10 +19,12 @@ typedef struct
 } PurchaseData; 
 
 // product data :
-
-Product Info[length] ;
+//,{"p1","Ecotrin.",15, 16.00 }
+Product Info[length] = {
+    {"p0","Aspirine",12, 10.00 } 
+} ;
 int numberOfProduct ;
-int products = 0 ;
+int products = 1 ;
 int numberOfsales = 0 ;
 char productBuyTime[50] ;
 

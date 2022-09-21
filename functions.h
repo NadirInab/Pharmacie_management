@@ -23,6 +23,7 @@ void feedStock() ;
 void deleteProduct() ;
 void saleData() ;
 
+int checkId(char Id[2]) ;
 // The functions definition .
 void theMain(){
     int userChoice  ;
@@ -75,9 +76,15 @@ do
 void addProduct(){
         printf("\t\t\n\n=====|| Add Product Info ||===== \n\n") ;
         printf("\t\t======================================\n") ;
-
-        printf("add Product Id : ") ;
+        back :
+        printf("\n add Product Id : ") ;
         scanf("%s",&Info[products].id) ;
+         int idChecker = checkId(Info[products].id) ;
+        if (idChecker == 1)
+        {
+          printf("the product id is already used ") ;
+          goto back ;
+        }
         printf("add Product Name : ") ;
         scanf(" %s",&Info[products].name) ;
         printf("add the Quantity : ") ;
@@ -85,16 +92,16 @@ void addProduct(){
         printf("add the price : ") ;
         scanf(" %f",&Info[products].price) ;
        products++ ;
-       for (int i = 0; i < products; i++)
-       {
-        
+       system("cls") ;
         printf("\n\t\t ====| Products data has been added successfully :\n\n") ;
         printf("\t\t======||_______________||========\n") ;
         printf("\t\t======||               ||========\n") ;
         printf("\t\t======|| Your product ||======= \n") ;
         printf("\t\t======||               ||========\n") ;
         printf("\t\t======||_______________||========\n") ;
-        printf("\t\tThe product Id       : %s \n ",Info[i].id) ;
+       for (int i = 0; i < products; i++)
+       {
+        printf("\n\n\t\tThe product Id       : %s \n ",Info[i].id) ;
         printf("\t\tThe product name     : %s \n",Info[i].name) ;
         printf("\t\tThe product quantity : %d \n",Info[i].quantity) ;
         printf("\t\tThe product price    : %.2f Dh \n",Info[i].price) ;
@@ -109,11 +116,18 @@ void addMultiProduct(){
     printf("Enter the number of products to add : ") ;
     scanf("%d",&numberOfProduct) ;
      // Adding the products .
-    for (int i = 0; i < numberOfProduct; i++)
+    for (int i = 0; i < products; i++)
     {
         printf("\t\t\n\n =====Add Product Info :===== \n\n") ;
-        printf("add Product Id : ") ;
+        back :
+        printf("\n add Product Id : ") ;
         scanf("%s",&Info[products].id) ;
+         int idChecker = checkId(Info[products].id) ;
+        if (idChecker == 1)
+        {
+          printf("the product id is already used ") ;
+          goto back ;
+        }
         printf("add Product Name : ") ;
         scanf("%s",&Info[products].name) ;
         printf("add the Quantity : ") ;
@@ -141,6 +155,23 @@ void addMultiProduct(){
 
     return_or_exit() ;
 }
+
+// checking Id 
+int checkId(char Id[2]){
+  int k =0 ;
+  for (int i = 0; i < products; i++)
+  {
+    if(strcmp(Id, Info[i].id) == 0){
+      k = 1 ;
+      return 1 ;
+    }
+    if (k == 0)
+    {
+      return 0 ;
+    }
+  }
+}
+
 
 // Retunr or exit functionality :
 void return_or_exit(){
@@ -288,7 +319,7 @@ void sortByName(){
  {
   for (int j = k + 1; j < products; j++)
   {
-    if (strcmp(Info[k].name , Info[j].name) > 0)
+    if (strcasecmp(Info[k].name , Info[j].name) > 0)
     {
       extrenal = Info[k];
       Info[k] = Info[j];
@@ -370,40 +401,45 @@ char productBuyTime[50] ;
     printf("\n");
     printf("enter the wanted quantity : ");
     scanf("%d", &wantedQuantity);
-     numberOfsales ++ ;
+     //numberOfsales ++ ;
      system("cls");
      printf("\n   ||==================||====== \n"); 
      printf("=====||Purchase Products ||======\n") ;
      printf("=====||==================||====== \n"); 
-     printf("==> The product code     : %s\n", productId);
-     printf("==> The wanted quantity  : %d \n\n", wantedQuantity);
+     printf("\t ==> The product code     : %s\n", productId);
+     printf("\t ==> The wanted quantity  : %d \n", wantedQuantity);
+     numberOfsales ++ ;
      for (int i = 0; i < products; i++)
      {
          if (strcmp(Info[i].id, productId) == 0)
          {
-          printf(" \n==>The Former quantity  : %d \n", Info[i].quantity);
+          system("cls") ;
+          printf("\t==>The Former quantity  : %d \n", Info[i].quantity);
           Info[i].quantity = Info[i].quantity - wantedQuantity;
-            printf("==>The actual quantity  : %d\n", Info[i].quantity);
+            printf("\t==>The actual quantity  : %d\n", Info[i].quantity);
             strcpy(thePurchaseData[i].id,Info[i].id) ;
             strcpy(thePurchaseData[i].name,Info[i].name) ;
             thePurchaseData[i].quantity = wantedQuantity ;
             strcpy(thePurchaseData[i].productBuyTime, productBuyTime) ;
             thePurchaseData[i].price = Info[i].price ;
+
+          printf("\t======|___________|======= \n") ;
+          printf("\t======| Your Bill |=======\n") ;
+          printf("\t======|___________|======= \n") ;
+
+          // for (int j = 0; j < numberOfsales; j++)
+          // {
+
+          printf("\n\t Product Id    : %s ",thePurchaseData[i].id ) ;
+          printf("\n\t Product name  : %s ",thePurchaseData[i].name ) ;
+          printf("\n\t ==>Date       : %s",thePurchaseData[i].productBuyTime ) ;
+          printf("\n\t ==>Quantity   : %d ",thePurchaseData[i].quantity ) ;
+          printf("\n\t ==>Total price: %.2f Dh",(thePurchaseData[i].price*wantedQuantity)) ;
+         // }
           } 
-          for (int j = 0; j < numberOfsales; j++)
-          {
-            printf(" the number of purchaqse is here %d \n",numberOfsales) ;
-          printf("\t\t======|___________|======= \n") ;
-          printf("\t\t======| Your Bill |=======\n") ;
-          printf("\t\t======|___________|======= \n") ;
-          printf("\t\t========|* * * * * *|=======") ;
-          printf("\n\t Product Id    : %s ",thePurchaseData[j].id ) ;
-          printf("\n\t Product name  : %s ",thePurchaseData[j].name ) ;
-          printf("\n\t ==>Date       : %s",thePurchaseData[j].productBuyTime ) ;
-          printf("\n\t ==>Quantity   : %d ",thePurchaseData[j].quantity ) ;
-          printf("\n\t ==>Total price: %.2f Dh",(thePurchaseData[j].price*wantedQuantity)) ;
-          }
+
       }
+     
       printf("\n\n");
       return_or_exit();
 }
@@ -433,13 +469,18 @@ void deleteProduct(){
   printf("Enter product's Id : ") ;
   scanf("%s",&idToDelete) ;
   printf("%s",idToDelete) ;
-  for(int i = 0; i < products ; i++){
+   for(int i = 0; i < products ; i++){
     if(strcmp(idToDelete,Info[i].id)==0){
-        printf("here") ;
-      // printf("%s \n", Info[i].id) ;
-      // printf("%s",Info[i].name) ;
+
+    for (int j = i; j < products; j++)
+      {
+        Info[j] = Info[j+1] ;
+      }
     }
+    products-- ;
   }
+  printf("Product has been deleted successfuly ") ;
+
 }
 
 // Data about the sale process : time and price and quantity .
